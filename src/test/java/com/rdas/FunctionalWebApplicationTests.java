@@ -1,5 +1,6 @@
 package com.rdas;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
@@ -19,7 +20,7 @@ public class FunctionalWebApplicationTests {
                 .isEqualTo("Hello");
     }
 
-    @Test
+    @Ignore
     public void jsonPage_WhenRequested_SaysHello() {
         webTestClient.get().uri("/json").exchange()
                 .expectStatus().is2xxSuccessful()
