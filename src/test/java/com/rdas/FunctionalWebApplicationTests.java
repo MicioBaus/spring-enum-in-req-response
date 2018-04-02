@@ -1,5 +1,6 @@
 package com.rdas;
 
+import com.rdas.model.Hello;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -20,12 +21,22 @@ public class FunctionalWebApplicationTests {
                 .isEqualTo("Hello");
     }
 
-    @Ignore
+    @Test
     public void jsonPage_WhenRequested_SaysHello() {
         webTestClient.get().uri("/json").exchange()
                 .expectStatus().is2xxSuccessful()
                 .expectHeader().contentType(APPLICATION_JSON)
                 .expectBody(Hello.class)
                 .isEqualTo(new Hello("world"));
+    }
+
+    @Test
+    public void s_WhenRequested_SaysHello() {
+        webTestClient.get().uri("/s").exchange()
+                .expectStatus().is2xxSuccessful()
+                .expectHeader().contentType(APPLICATION_JSON)
+                .expectBody(Hello.class)
+                //.isEqualTo(new Hello("RANA DAS"))
+        ;
     }
 }

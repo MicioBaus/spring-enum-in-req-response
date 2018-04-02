@@ -1,14 +1,11 @@
 package com.rdas;
 
-import com.rdas.service.InMemoryService;
-import lombok.Data;
+import com.rdas.model.Hello;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.LifecycleException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.server.reactive.HttpHandler;
 import org.springframework.http.server.reactive.ReactorHttpHandlerAdapter;
 import org.springframework.web.reactive.function.server.HandlerFunction;
@@ -26,40 +23,17 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
-@ComponentScan("com.rdas")
-@ConfigurationProperties
 @Slf4j
 @SpringBootApplication
-public class FunctionalWebAppMain {
-
-    @Autowired
-    private InMemoryService inMemoryService;
-
-    @Value("server")
-    private String host;
-
-    @Value("port")
-    private String port;
-
-    static RouterFunction getRouter() {
-        HandlerFunction hello = request -> ok().body(fromObject("Hello"));
-
-        HandlerFunction jsonResp = request -> ServerResponse.ok().body(Mono.just("Hello"), String.class);
-
-        return
-                route(
-                        GET("/"), hello)
-                        .andRoute(
-                                GET("/json"), req -> ok().contentType(APPLICATION_JSON).body(fromObject(new Hello("world"))));
-    }
+public class FunctionalWebAppMain implements CommandLineRunner {
 
     public static void main(String[] args) throws IOException, LifecycleException, InterruptedException {
-        new FunctionalWebAppMain().run();
+        SpringApplication.run(FunctionalWebAppMain.class, args);
     }
 
-    public void run() throws InterruptedException {
-        //log.info("Starting a functional Spring 5. {}: {}", host, port);
-        //inMemoryService.work();
+    @Override
+    public void run(String... args) throws Exception {
+        log.info("Starting functional Spring 5 non blocking server.");
         RouterFunction router = getRouter();
 
         HttpHandler httpHandler = RouterFunctions.toHttpHandler(router);
@@ -71,10 +45,18 @@ public class FunctionalWebAppMain {
 
         Thread.currentThread().join();
     }
-}
 
-@Data
-class Hello {
-    private final String name;
+    static RouterFunction getRouter() {
+        HandlerFunction textHandler = request -> ok().body(fromObject("Hello"));
+
+        HandlerFunction jsonHandler = request -> ServerResponse.ok().contentType(APPLICATION_JSON).body(Mono.just("RANA DAS"), String.class);
+
+        return
+                route(
+                        GET("/"), textHandler)
+                        .andRoute(
+                                GET("/json"), req -> ok().contentType(APPLICATION_JSON).body(fromObject(new Hello("world"))))
+                        .andRoute(GET("/s"), jsonHandler);
+    }
 }
 
