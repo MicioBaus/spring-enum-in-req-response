@@ -3,8 +3,6 @@ package com.rdas.service;
 import com.rdas.model.Person;
 import com.rdas.model.PersonType;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -15,10 +13,6 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class InMemoryPersonService {
-    @Autowired
-    private ApplicationContext applicationContext;
-
-
     private List<Person> persons;
 
     @PostConstruct
@@ -38,8 +32,8 @@ public class InMemoryPersonService {
 
     public List<Person> getPersons(Person personToSearch) {
         return persons.stream().filter(p -> p.getType() == personToSearch.getType())
-                .filter(p-> p.getId() == personToSearch.getId())
-                .filter(p-> p.getName().equalsIgnoreCase(personToSearch.getName()))
+                .filter(p -> p.getId() == personToSearch.getId())
+                .filter(p -> p.getName().equalsIgnoreCase(personToSearch.getName()))
                 .collect(Collectors.toList());
     }
 
