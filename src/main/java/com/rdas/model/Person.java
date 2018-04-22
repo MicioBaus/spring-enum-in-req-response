@@ -1,9 +1,9 @@
 package com.rdas.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@ToString
+@Builder
 @AllArgsConstructor @NoArgsConstructor
 @Data
 public class Person {
@@ -12,4 +12,6 @@ public class Person {
     private String name;
 
     private int age;
+
+    private PersonType type;
 }
