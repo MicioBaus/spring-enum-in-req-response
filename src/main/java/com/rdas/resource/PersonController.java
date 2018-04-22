@@ -6,10 +6,7 @@ import com.rdas.service.InMemoryPersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
 import java.util.List;
@@ -35,8 +32,12 @@ public class PersonController {
 
     @GetMapping("/personsbytype")
     public List<Person> getPersonsByType(@RequestParam("type") PersonType type) {
-        System.out.println(type);
         return personService.getPersons(type);
+    }
+
+    @PostMapping("/create")
+    public boolean createPersons(@RequestBody Person person) {
+        return personService.addPerson(person);
     }
 
     @InitBinder
