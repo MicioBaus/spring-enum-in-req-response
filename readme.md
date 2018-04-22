@@ -1,1 +1,1 @@
-Notes on 5th Spring Framework release called Functional Web Framework.
+Spring mvc that accepts enum & replies with enum
