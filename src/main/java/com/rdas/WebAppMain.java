@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
 @SpringBootApplication
-public class FunctionalWebAppMain {
+public class WebAppMain {
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(FunctionalWebAppMain.class, args);
+        SpringApplication.run(WebAppMain.class, args);
     }
 }
 
