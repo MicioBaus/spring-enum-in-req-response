@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.beans.PropertyEditorSupport;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by rdas on 22/04/2018.
@@ -30,9 +31,14 @@ public class PersonController {
         return personService.getPersons();
     }
 
-    @GetMapping("/personsbytype")
+    @GetMapping("/personsByType")
     public List<Person> getPersonsByType(@RequestParam("type") PersonType type) {
         return personService.getPersons(type);
+    }
+
+    @GetMapping("/personbyid/{id}")
+    public Optional<Person> getPersonsById(@PathVariable("id") Integer id) {
+        return personService.getPersonById(id);
     }
 
     @PostMapping("/create")

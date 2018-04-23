@@ -43,7 +43,7 @@ public class PersonServiceTest {
 
     @Test
     public void assertThatZackCannotBeAddedAgainIsAvailable() {
-        Person p = Person.builder().id("6").name("ZACK").age(45).type(PersonType.MALE).build();
+        Person p = Person.builder().id(6).name("ZACK").age(45).type(PersonType.MALE).build();
         assertFalse(inMemoryPersonService.addPerson(p));
         assertEquals(inMemoryPersonService.getPersons().size(), 5);
     }

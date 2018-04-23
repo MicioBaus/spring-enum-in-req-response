@@ -4,10 +4,11 @@ import lombok.*;
 
 @ToString
 @Builder
-@AllArgsConstructor @NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Person {
-    private String id;
+    private Integer id;
 
     private String name;
 
