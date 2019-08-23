@@ -1,14 +1,19 @@
 package com.rdas.model;
 
 import lombok.*;
+import javax.persistence.*;
 
 @ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Entity
+@Table(name = "person")
 public class Person {
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     private String name;
 

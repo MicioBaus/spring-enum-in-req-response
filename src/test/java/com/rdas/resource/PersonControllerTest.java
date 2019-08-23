@@ -65,11 +65,11 @@ public class PersonControllerTest {
     @Test
     public void assertThatGetAllReturnsOk() throws Exception {
         //given
-        persons.add(Person.builder().id(1).name("Rana").age(40).type(PersonType.MALE).build());
-        persons.add(Person.builder().id(2).name("Jennifer").age(40).type(PersonType.FEMALE).build());
-        persons.add(Person.builder().id(3).name("Connal").age(100).type(PersonType.GENDER_NEUTRAL).build());
-        persons.add(Person.builder().id(4).name("Florence").age(99).type(PersonType.FEMALE).build());
-        persons.add(Person.builder().id(5).name("Zack").age(11).type(PersonType.MALE).build());
+        persons.add(Person.builder().name("Rana").age(40).type(PersonType.MALE).build());
+        persons.add(Person.builder().name("Jennifer").age(40).type(PersonType.FEMALE).build());
+        persons.add(Person.builder().name("Connal").age(100).type(PersonType.GENDER_NEUTRAL).build());
+        persons.add(Person.builder().name("Florence").age(99).type(PersonType.FEMALE).build());
+        persons.add(Person.builder().name("Zack").age(11).type(PersonType.MALE).build());
         given(inMemoryPersonService.getPersons()).willReturn(persons);
 
         //when
@@ -93,8 +93,8 @@ public class PersonControllerTest {
     public void assertThatGetMalesReturnsOk() throws Exception {
         //given
         PersonType maleType = PersonType.MALE;
-        persons.add(Person.builder().id(1).name("Rana Das").age(40).type(PersonType.MALE).build());
-        persons.add(Person.builder().id(5).name("Zack Murphy").age(11).type(PersonType.MALE).build());
+        persons.add(Person.builder().name("Rana Das").age(40).type(PersonType.MALE).build());
+        persons.add(Person.builder().name("Zack Murphy").age(11).type(PersonType.MALE).build());
         given(inMemoryPersonService.getPersons(maleType)).willReturn(persons);
 
         //when
@@ -125,10 +125,10 @@ public class PersonControllerTest {
     public void assertThatCreatePersonReturnsOk_IfNew() throws Exception {
         //given
         PersonType maleType = PersonType.MALE;
-        persons.add(Person.builder().id(1).name("Rana Das").age(40).type(PersonType.MALE).build());
-        persons.add(Person.builder().id(5).name("Zack Murphy").age(11).type(PersonType.MALE).build());
+        persons.add(Person.builder().name("Rana Das").age(40).type(PersonType.MALE).build());
+        persons.add(Person.builder().name("Zack Murphy").age(11).type(PersonType.MALE).build());
         given(inMemoryPersonService.getPersons(maleType)).willReturn(persons);
-        Person newPerson = Person.builder().id(7).name("Jennifer Simonetti").age(40).type(PersonType.FEMALE).build();
+        Person newPerson = Person.builder().name("Jennifer Simonetti").age(40).type(PersonType.FEMALE).build();
 
         //when
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();

@@ -19,7 +19,7 @@ public enum PersonType {
     }
 
     public static PersonType fromValue(String value) {
-        for (PersonType category : values()) {
+        for (PersonType category : PersonType.values()) {
             if (category.personSex.equalsIgnoreCase(value)) {
                 return category;
             }
