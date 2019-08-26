@@ -18,8 +18,12 @@ import com.rdas.service.PersonRepository;
 @Service
 public class InMemoryPersonService {
 
-    @Autowired 
-    private PersonRepository personRepository;
+    @Autowired
+    private final PersonRepository personRepository;
+
+    InMemoryPersonService(PersonRepository repository) {
+        this.personRepository = repository;
+    }
 
     @PostConstruct
     public void init() {
