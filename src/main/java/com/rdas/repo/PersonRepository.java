@@ -2,14 +2,14 @@ package com.rdas.repo;
 
 import com.rdas.model.Person;
 import com.rdas.model.PersonType;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PersonRepository extends CrudRepository<Person, Long> {
+public interface PersonRepository extends JpaRepository<Person, Long> {
 
     Optional<Person> findById(int id);
 
