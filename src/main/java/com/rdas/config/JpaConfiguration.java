@@ -4,6 +4,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@EnableJpaRepositories
+@EnableJpaRepositories (basePackages = "com.rdas.repo")
 public class JpaConfiguration {
 }

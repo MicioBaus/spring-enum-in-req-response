@@ -18,11 +18,11 @@ import java.util.stream.Collectors;
 @Service
 public class InMemoryPersonService {
 
-    @Autowired
     private final PersonRepository personRepository;
 
-    InMemoryPersonService(PersonRepository repository) {
-        this.personRepository = repository;
+    @Autowired
+    public InMemoryPersonService(PersonRepository personRepository) {
+        this.personRepository = personRepository;
     }
 
     @PostConstruct
