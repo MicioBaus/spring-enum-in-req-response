@@ -1,4 +1,4 @@
-package com.rdas.service;
+package com.rdas.repo;
 
 import com.rdas.model.Person;
 import com.rdas.model.PersonType;

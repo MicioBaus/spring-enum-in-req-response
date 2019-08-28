@@ -1,2 +1,22 @@
-host: localhost
-port: 8081
+#host: localhost
+#port: 8081
+server:
+  port: 8081
+
+logging:
+  level: info
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console

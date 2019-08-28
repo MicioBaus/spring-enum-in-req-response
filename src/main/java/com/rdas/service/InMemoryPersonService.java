@@ -2,6 +2,7 @@ package com.rdas.service;
 
 import com.rdas.model.Person;
 import com.rdas.model.PersonType;
+import com.rdas.repo.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.rdas.service.PersonRepository;
 
 @Slf4j
 @Service
@@ -45,8 +45,7 @@ public class InMemoryPersonService {
         List persons = new ArrayList<>();
         Optional<Person>  person = personRepository.findById(personToSearch.getId());
 
-        if (person.isPresent())
-        {
+        if (person.isPresent()) {
             persons.add(person);
         }
 

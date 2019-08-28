@@ -1,10 +1,9 @@
-package com.rdas;
+package com.rdas.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 @EnableJpaRepositories
-class Config {
-
+public class JpaConfiguration {
 }
